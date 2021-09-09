@@ -1,8 +1,8 @@
+import React, { useState } from "react";
 import Expenses from "../src/components/Expenses/Expenses";
 import NewExpense from "./components/NewExpense/NewExpense";
 
-const App = () => {
-  const expenses = [
+const DUMMY_EXPENSES = [
     { 
       id: 'e1', 
       title: 'Car Insurance', 
@@ -13,7 +13,7 @@ const App = () => {
       id: 'e2', 
       title: 'Groceries', 
       amount: 129.89, 
-      date: new Date(2021, 8, 3)
+      date: new Date(2019, 8, 3)
     },
     { 
       id: 'e3', 
@@ -25,13 +25,17 @@ const App = () => {
       id: 'e4', 
       title: 'Internet', 
       amount: 72.10, 
-      date: new Date(2021, 7, 28)
+      date: new Date(2020, 7, 28)
     },
-  ];
+];
+
+const App = () => {
+  const [expenses, setNewExpense] = useState(DUMMY_EXPENSES);
 
   const addExpenseHandler = (expense) => {
-    console.log(expense);
-    console.log(expenses);
+    setNewExpense(prevExpenses => {
+      return [expense, ...prevExpenses];
+    });
   }
 
   return (
